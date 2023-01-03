@@ -1,4 +1,13 @@
-import { Button, Form, Input, Spin, Tabs, useForm } from "@pankod/refine-antd";
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  Row,
+  Spin,
+  Tabs,
+  useForm,
+} from "@pankod/refine-antd";
 import { useLogin, useRegister } from "@pankod/refine-core";
 import React, { useState } from "react";
 import type { RadioChangeEvent } from "antd";
@@ -21,61 +30,150 @@ export const Login: React.FC = () => {
 
   return (
     <>
-      <Radio.Group
-        defaultValue={value}
-        size="large"
-        value={value}
-        onChange={onChange}
-      >
-        <Radio.Button value="a">Login</Radio.Button>
-        <Radio.Button value="b">Sign Up</Radio.Button>
-      </Radio.Group>
-      {value === "a" && (
-        <>
-          <Form
-            form={form}
-            {...formProps}
-            onFinish={(values: any) => {
-              const { email, password } = values;
-              mutate({ email, password });
+      <Row>
+        <Col span={12}></Col>
+        <Col span={12} style={{ background: "#F3F4F8", height: "100vh" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
+              justifyContent: "center",
             }}
           >
-            <Form.Item name={"email"}>
-              <Input placeholder="email" />
-            </Form.Item>
-            <Form.Item name={"password"}>
-              <Input placeholder="password" type="password" />
-            </Form.Item>
+            {value === "a" && (
+              <>
+                <Form
+                  form={form}
+                  {...formProps}
+                  onFinish={(values: any) => {
+                    const { email, password } = values;
+                    mutate({ email, password });
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      color: "black",
+                    }}
+                  >
+                    Email
+                  </div>
+                  <Form.Item name={"email"}>
+                    <Input
+                      placeholder="Email"
+                      size="large"
+                      style={{ width: "250px" }}
+                    />
+                  </Form.Item>
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      color: "black",
+                    }}
+                  >
+                    Password
+                  </div>
+                  <Form.Item name={"password"}>
+                    <Input
+                      size="large"
+                      placeholder="Password"
+                      type="password"
+                      style={{ width: "250px" }}
+                    />
+                  </Form.Item>
 
-            <Button style={{ width: "100px" }} size="large" htmlType="submit">
-              {isLoading ? <Spin /> : <>Login </>}
-            </Button>
-          </Form>
-        </>
-      )}
-      {value === "b" && (
-        <>
-          <Form
-            form={form}
-            {...formProps}
-            onFinish={(values: any) => {
-              const { email, password } = values;
-              Register({ email, password });
-            }}
-          >
-            <Form.Item name={"email"}>
-              <Input placeholder="email" />
-            </Form.Item>
-            <Form.Item name={"password"}>
-              <Input placeholder="password" type="password" />
-            </Form.Item>
+                  <Button
+                    style={{
+                      width: "250px",
+                      background: "#7E56DA",
+                      color: "white",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                    size="large"
+                    htmlType="submit"
+                  >
+                    {isLoading ? <Spin /> : <>Login </>}
+                  </Button>
+                  <div
+                    style={{ cursor: "pointer", paddingTop: "10px" }}
+                    onClick={() => setValue1("b")}
+                  >
+                    Don't have an account?{" "}
+                    <span style={{ color: "#7E56DA" }}> Sign Up </span>
+                  </div>
+                </Form>
+              </>
+            )}
+            {value === "b" && (
+              <>
+                <Form
+                  form={form}
+                  {...formProps}
+                  onFinish={(values: any) => {
+                    const { email, password } = values;
+                    Register({ email, password });
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      color: "black",
+                    }}
+                  >
+                    Email
+                  </div>
+                  <Form.Item name={"email"}>
+                    <Input
+                      placeholder="email"
+                      size="large"
+                      style={{ width: "250px" }}
+                    />
+                  </Form.Item>
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      color: "black",
+                    }}
+                  >
+                    Password
+                  </div>
+                  <Form.Item name={"password"}>
+                    <Input
+                      placeholder="password"
+                      type="password"
+                      size="large"
+                      style={{ width: "250px" }}
+                    />
+                  </Form.Item>
 
-            <Button style={{ width: "100px" }} size="large" htmlType="submit">
-              {isR ? <Spin /> : <>SignUp</>}
-            </Button>
-          </Form>
-        </>
-      )}
+                  <Button
+                    style={{
+                      width: "250px",
+                      background: "#7E56DA",
+                      color: "white",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                    size="large"
+                    htmlType="submit"
+                  >
+                    {isR ? <Spin /> : <>SignUp</>}
+                  </Button>
+                  <div
+                    onClick={() => setValue1("a")}
+                    style={{ cursor: "pointer", paddingTop: "10px" }}
+                  >
+                    Already have an account ?
+                    <span style={{ color: "#7E56DA" }}>Login</span>
+                  </div>
+                </Form>
+              </>
+            )}
+          </div>
+        </Col>
+      </Row>
     </>
   );
 };
