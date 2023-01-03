@@ -106,12 +106,6 @@ const App: React.FC = () => {
             edit: PostEdit,
             show: PostShow,
           },
-          {
-            name: "categories",
-            list: CategoriesList,
-            create: CategoriesCreate,
-            edit: CategoriesEdit,
-          },
         ]}
         notificationProvider={notificationProvider}
         Layout={Layout}
